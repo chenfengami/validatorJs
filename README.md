@@ -3,13 +3,13 @@
 目前支持的验证类型
 -------
 
-. isNonEmpty 判断是否为空
-. minLength:6 最小长度限制为6位
-. maxLength:24 最大长度限制为24位
-. isEqual 是否相等验证
-. isPhone 手机号码验证
-. isEmail 邮箱验证
-. 之后会继续完善，想自己定义也可以在strategies对象里面进行匹配
+1. isNonEmpty 判断是否为空
+2. minLength:6 最小长度限制为6位
+3. maxLength:24 最大长度限制为24位
+4. isEqual 是否相等验证
+5. isPhone 手机号码验证
+6. isEmail 邮箱验证
+7. 之后会继续完善，想自己定义也可以在strategies对象里面进行匹配
 
 使用方法
 =======
@@ -40,3 +40,25 @@
         }]
     }]
     //以上对表单的限制规则为长度要在6-24个字符之间。包含6和24。
+
+Example
+-------
+    <script src="./validator.js"></script>
+    <input type="text" placeholder="请输入邮箱" id="email"/>
+    var oEmail = document.getElementById('email');
+    //这里使用刚刚我们的那个方法，如果验证通过errorMsg是不会有返回值 如果不通过则是我们自己设置的提示信息
+
+    var errorMsg = validator().validataFunc([{
+        input: oEmail.value,
+        rules: [{
+            strategy: isEmail, //输入验证的类型 【判断是否为邮箱】
+            errorMsg: '请输入正确的邮箱格式'
+        }]
+    }])
+
+    if(errorMsg){ //验证不通过
+        alert(errorMsg);
+        return;
+    }
+    
+    form.submit(); //验证通过
