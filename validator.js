@@ -3,7 +3,6 @@ function validator() {
 
     let strategies, validataFunc;
 
-    //设置策略对象 规则
     strategies = {
         isNonEmpty: function (value, errorMsg) {
             if (value === '') {
